@@ -6,7 +6,7 @@ define view entity ZI_BOOKING_EV
   as select from zbooking_ev
   
 {
-  key bookinguuid           as Bookinguuid,
+  key booking_uuid          as Bookinguuid,
       parent_uuid           as ParentUuid,
       booking_id            as BookingId,
       booking_date          as BookingDate,

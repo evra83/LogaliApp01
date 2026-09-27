@@ -7,7 +7,7 @@ define root view entity ZI_TRAVEL_EV
   association [1..1] to /DMO/I_Agency   as _agency   on $projection.AgencyId   = _agency.AgencyID
   //composition of target_data_source_name as _association_name
 {
-  key traveluuid            as Traveluuid,
+  key travel_uuid           as Traveluuid,
       travel_id             as TravelId,
       agency_id             as AgencyId,
       customer_id           as CustomerId,
