@@ -1,0 +1,14 @@
+@EndUserText.label: 'Travel Service'
+define service ZUI_TRAVEL_EV {
+  expose ZC_TRAVEL_EV;
+  expose ZC_BOOKING_EV;
+  expose ZC_BSUPPL_EV;
+  expose /DMO/I_Customer;
+  expose /DMO/I_Agency;
+  expose I_Currency;
+  expose /DMO/I_Overall_Status_VH;
+  expose /DMO/I_Carrier;
+  expose /DMO/I_Connection;
+  expose /DMO/I_Supplement;
+  expose /DMO/I_SupplementText;
+}

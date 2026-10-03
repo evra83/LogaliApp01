@@ -1,0 +1,55 @@
+@Metadata.layer: #CORE
+annotate entity ZC_TRAVEL_EV
+    with 
+{
+    @EndUserText.label: 'Travel UUID'
+    @UI.hidden: true
+    Traveluuid;
+    @EndUserText.label: 'Travel ID'
+    @UI:{ lineItem: [{ position: 10 }] }
+    TravelId;
+    @EndUserText.label: 'Agency ID'
+    @UI:{ lineItem: [{ position: 20 }] }
+    AgencyId;
+    @EndUserText.label: 'Customer'
+    @UI:{ lineItem: [{ position: 30 }] }
+    CustomerId;
+    @EndUserText.label: 'Begin Date'
+    @UI:{ lineItem: [{ position: 40 }] }
+    BeginDate;
+    @EndUserText.label: 'End Date'
+    @UI:{ lineItem: [{ position: 50 }] }
+    EndDate;
+    @EndUserText.label: 'Currency'
+    @UI:{ lineItem: [{ position: 60 }] }
+    CurrencyCode;
+    @EndUserText.label: 'Booking Fee'
+    @UI:{ lineItem: [{ position: 70 }] }
+    BookingFee;
+    @EndUserText.label: 'Total Price'
+    @UI:{ lineItem: [{ position: 80 }] }
+    TotalPrice;
+    @EndUserText.label: 'Description'
+    @UI:{ lineItem: [{ position: 90 }] }
+    Description;
+    @EndUserText.label: 'Overall Status'
+    @UI:{ lineItem: [{ position: 100 }] }
+    OverallStatus;
+    @EndUserText.label: 'Local Created By'
+    @UI.hidden: true
+    LocalCreatedBy;
+    @EndUserText.label: 'Local Created At'
+    @UI.hidden: true
+    LocalCreatedAt;
+    @EndUserText.label: 'Local Last Changed By'
+    @UI.hidden: true
+    LocalLastChangedBy;
+    @EndUserText.label: 'Local Last Changed At'
+    @UI.hidden: true
+    LocalLastChangedAt;
+    @EndUserText.label: 'Last Changed At'
+    @UI.hidden: true
+    LastChangedAt;
+
+    
+}

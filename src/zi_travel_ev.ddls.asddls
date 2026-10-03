@@ -3,8 +3,11 @@
 @Metadata.ignorePropagatedAnnotations: true
 define root view entity ZI_TRAVEL_EV
   as select from ztravel_ev
-  association [1..1] to /DMO/I_Customer as _customer on $projection.CustomerId = _customer.CustomerID
-  association [1..1] to /DMO/I_Agency   as _agency   on $projection.AgencyId   = _agency.AgencyID
+  composition [0..*] of ZI_BOOKING_EV as _booking      
+  association [1..1] to /DMO/I_Customer          as _customer      on $projection.CustomerId = _customer.CustomerID
+  association [1..1] to /DMO/I_Agency            as _agency        on $projection.AgencyId = _agency.AgencyID
+  association [0..1] to I_Currency               as _currency      on $projection.CurrencyCode = _currency.Currency
+  association [0..1] to /DMO/I_Overall_Status_VH as _overallstatus on $projection.OverallStatus = _overallstatus.OverallStatus
   //composition of target_data_source_name as _association_name
 {
   key travel_uuid           as Traveluuid,
@@ -31,6 +34,9 @@ define root view entity ZI_TRAVEL_EV
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at       as LastChangedAt,
       //Associations
+      _booking,
       _customer,
-      _agency
+      _agency,
+      _currency,
+      _overallstatus
 }
