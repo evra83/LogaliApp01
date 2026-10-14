@@ -14,6 +14,7 @@ define root view entity ZI_TRAVEL_EV
       travel_id             as TravelId,
       agency_id             as AgencyId,
       customer_id           as CustomerId,
+      concat_with_space( _customer.FirstName, _customer.LastName, 1 ) as CustomerName,
       begin_date            as BeginDate,
       end_date              as EndDate,
       currency_code         as CurrencyCode,
@@ -23,6 +24,12 @@ define root view entity ZI_TRAVEL_EV
       total_price           as TotalPrice,
       description           as Description,
       overall_status        as OverallStatus,
+      case overall_status
+        when 'O' then 2
+		when 'A' then 3
+		when 'X' then 1
+		else 0
+	  end as OverallStatusCriticality,	
       @Semantics.user.createdBy: true
       local_created_by      as LocalCreatedBy,
       @Semantics.systemDateTime.createdAt: true

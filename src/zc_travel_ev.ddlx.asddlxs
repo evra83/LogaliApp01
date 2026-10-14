@@ -1,4 +1,16 @@
-@Metadata.layer: #CORE
+ @Metadata.layer: #CORE
+ @UI: {
+    headerInfo:{
+        typeName: 'Travel',
+        typeNamePlural: 'Travels'
+    },
+    presentationVariant: [ {  
+         sortOrder:[{ by: 'TravelId', direction: #DESC}],
+         visualizations: [{ type: #AS_LINEITEM }]
+        }
+    ]    
+         
+ }
 annotate entity ZC_TRAVEL_EV
     with 
 {
@@ -6,13 +18,24 @@ annotate entity ZC_TRAVEL_EV
     @UI.hidden: true
     Traveluuid;
     @EndUserText.label: 'Travel ID'
-    @UI:{ lineItem: [{ position: 10 }] }
+    @UI:{ 
+        lineItem: [{ position: 10 }],
+        selectionField: [{ position: 10 }] 
+    }
     TravelId;
     @EndUserText.label: 'Agency ID'
-    @UI:{ lineItem: [{ position: 20 }] }
+    @UI:{ 
+        lineItem: [{ position: 20 }] ,
+        textArrangement: #TEXT_ONLY,
+        selectionField: [{ position: 20 }]
+     }
     AgencyId;
     @EndUserText.label: 'Customer'
-    @UI:{ lineItem: [{ position: 30 }] }
+    @UI:{ 
+        lineItem: [{ position: 30 }],
+        textArrangement: #TEXT_ONLY,
+        selectionField: [{ position: 30 }] 
+    }
     CustomerId;
     @EndUserText.label: 'Begin Date'
     @UI:{ lineItem: [{ position: 40 }] }
@@ -33,7 +56,15 @@ annotate entity ZC_TRAVEL_EV
     @UI:{ lineItem: [{ position: 90 }] }
     Description;
     @EndUserText.label: 'Overall Status'
-    @UI:{ lineItem: [{ position: 100 }] }
+    @UI:{ 
+        lineItem: [{ 
+            position: 100,
+            cssDefault.width: '10rem',
+            criticality: 'OverallStatusCriticality' 
+        }],
+        textArrangement: #TEXT_ONLY,
+        selectionField: [{ position: 40 }] 
+    }
     OverallStatus;
     @EndUserText.label: 'Local Created By'
     @UI.hidden: true
