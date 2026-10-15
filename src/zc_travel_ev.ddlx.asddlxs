@@ -2,7 +2,13 @@
  @UI: {
     headerInfo:{
         typeName: 'Travel',
-        typeNamePlural: 'Travels'
+        typeNamePlural: 'Travels',
+        title: { 
+            value: 'CustomerName' 
+        },
+        description: { 
+			value: 'Description' 
+		}
     },
     presentationVariant: [ {  
          sortOrder:[{ by: 'TravelId', direction: #DESC}],
@@ -13,47 +19,118 @@
  }
 annotate entity ZC_TRAVEL_EV
     with 
-{
+{   
+//***************************************************
+//Facets
+//***************************************************
+@UI.facet: [ 
+    { 
+		id: 'GeneralSection',
+		purpose: #STANDARD,
+		type: #COLLECTION, 
+		label: 'General Information',
+		position: 10
+	},
+	{
+	    id: 'Travel',
+	    purpose: #STANDARD,
+	    type: #IDENTIFICATION_REFERENCE,
+	    label: 'Travel',
+	    parentId: 'GeneralSection',
+	    position: 10 
+	},
+	{ 
+	    id: 'Participants',
+        purpose: #STANDARD,
+        type: #FIELDGROUP_REFERENCE,
+        label: 'Participants',
+        parentId: 'GeneralSection',
+        targetQualifier: 'Participants',
+        position: 20
+	},
+	{ 
+        id: 'Dates',
+        purpose: #STANDARD,
+        type: #FIELDGROUP_REFERENCE,
+        label: 'Dates',
+        parentId: 'GeneralSection',
+        targetQualifier: 'Dates',
+        position: 30
+    },
+    { 
+        id: 'Pricing',
+        purpose: #STANDARD,
+        type: #FIELDGROUP_REFERENCE,
+        label: 'Pricing',
+        parentId: 'GeneralSection',
+        targetQualifier: 'Pricing',
+        position: 40
+    } 
+]
+
+
+//***************************************************
+//Columns
+//***************************************************
+
     @EndUserText.label: 'Travel UUID'
     @UI.hidden: true
     Traveluuid;
     @EndUserText.label: 'Travel ID'
     @UI:{ 
         lineItem: [{ position: 10 }],
-        selectionField: [{ position: 10 }] 
+        selectionField: [{ position: 10 }],
+        identification: [{ position: 10 }] 
     }
     TravelId;
     @EndUserText.label: 'Agency ID'
     @UI:{ 
         lineItem: [{ position: 20 }] ,
         textArrangement: #TEXT_ONLY,
-        selectionField: [{ position: 20 }]
+        selectionField: [{ position: 20 }],
+        fieldGroup: [{ position: 10, qualifier: 'Participants' }]
      }
     AgencyId;
     @EndUserText.label: 'Customer'
     @UI:{ 
         lineItem: [{ position: 30 }],
         textArrangement: #TEXT_ONLY,
-        selectionField: [{ position: 30 }] 
+        selectionField: [{ position: 30 }],
+        fieldGroup: [{ position: 20, qualifier: 'Participants' }] 
     }
     CustomerId;
     @EndUserText.label: 'Begin Date'
-    @UI:{ lineItem: [{ position: 40 }] }
+    @UI:{ 
+        lineItem: [{ position: 40 }],
+        fieldGroup: [{ position: 10, qualifier: 'Dates' }] 
+    }
     BeginDate;
     @EndUserText.label: 'End Date'
-    @UI:{ lineItem: [{ position: 50 }] }
+    @UI:{ 
+        lineItem: [{ position: 50 }],
+        fieldGroup: [{ position: 20, qualifier: 'Dates' }] 
+    }
     EndDate;
     @EndUserText.label: 'Currency'
     @UI:{ lineItem: [{ position: 60 }] }
     CurrencyCode;
     @EndUserText.label: 'Booking Fee'
-    @UI:{ lineItem: [{ position: 70 }] }
+    @UI:{ 
+        lineItem: [{ position: 70 }],
+        fieldGroup: [{ position: 10, qualifier: 'Pricing' }] 
+    }
     BookingFee;
     @EndUserText.label: 'Total Price'
-    @UI:{ lineItem: [{ position: 80 }] }
+    @UI:{ 
+        lineItem: [{ position: 80 }],
+        fieldGroup: [{ position: 20, qualifier: 'Pricing' }] 
+    }
     TotalPrice;
     @EndUserText.label: 'Description'
-    @UI:{ lineItem: [{ position: 90 }] }
+    @UI:{ 
+        lineItem: [{ position: 90 }],
+        identification: [{ position: 20 }] 
+    }
     Description;
     @EndUserText.label: 'Overall Status'
     @UI:{ 
