@@ -65,6 +65,14 @@ annotate entity ZC_TRAVEL_EV
         parentId: 'GeneralSection',
         targetQualifier: 'Pricing',
         position: 40
+    },
+    { 
+        id: 'Booking',
+        purpose: #STANDARD,
+        type: #LINEITEM_REFERENCE,
+        label: 'Booking',
+        targetElement: '_booking',
+        position: 20
     } 
 ]
 

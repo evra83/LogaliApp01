@@ -1,0 +1,95 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: 'Booking Supplement',
+        typeNamePlural: 'Booking Supplements',
+        title: {
+            value: 'BookingSupplemetId'
+        },
+        description: {
+            value: 'SupplementID'
+        }
+    },
+    presentationVariant: [
+        {
+            sortOrder: [{ by: 'BookingSupplemetId', direction: #DESC }],
+            visualizations: [ { type: #AS_LINEITEM } ]
+        }
+    ]
+}
+annotate entity ZC_BSUPPL_EV
+    with 
+{
+    @UI.facet: [
+        {
+            id: 'GeneralSection',
+            purpose: #STANDARD,
+            type: #COLLECTION,
+            label: 'General Information',
+            position: 10
+        },
+        {
+            id: 'Supplement',
+            purpose: #STANDARD,
+            type: #FIELDGROUP_REFERENCE,
+            label: 'Supplement',
+            parentId: 'GeneralSection',
+            targetQualifier: 'Supplement',
+            position: 10
+        },
+        {
+            id: 'Pricing',
+            purpose: #STANDARD,
+            type: #FIELDGROUP_REFERENCE,
+            label: 'Pricing',
+            parentId: 'GeneralSection',
+            targetQualifier: 'Pricing',
+            position: 20
+        }
+    ]
+    
+    @EndUserText.label: 'Booking Supplement UUID'
+    @UI.hidden: true
+    BookingsupplUuid;
+    
+    @EndUserText.label: 'Travel UUID'
+    @UI.hidden: true
+    TravelUuid;
+    
+    @EndUserText.label: 'Booking UUID'
+    @UI.hidden: true
+    BookingUuid;
+    
+    @EndUserText.label: 'Booking Supplement ID'
+    @UI: {
+        lineItem: [ { position: 10 } ],
+        selectionField: [ { position: 10 } ],
+        fieldGroup: [ { position: 10, qualifier: 'Supplement' } ]
+    }
+    BookingSupplemetId;
+    
+    @EndUserText.label: 'Supplement ID'
+    @UI: {
+        lineItem: [ { position: 20 } ],
+        selectionField: [ { position: 20 } ],
+        fieldGroup: [ { position: 20, qualifier: 'Supplement' } ]
+    }
+    SupplementId;
+    
+    @EndUserText.label: 'Currency Code'
+    @UI: {
+        fieldGroup: [ { position: 10, qualifier: 'Pricing' } ]
+    }
+    CurrencyCode;
+    
+    @EndUserText.label: 'Price'
+    @UI: {
+        lineItem: [ { position: 30 } ],
+        fieldGroup: [ { position: 20, qualifier: 'Pricing' } ]
+    }
+    Price;
+    
+    @EndUserText.label: 'Last Changed At'
+    @UI.hidden: true
+    LocalLastChangedAt;
+}
