@@ -1,0 +1,36 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_TRAVEL_EV alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Resume;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use association _booking { create; with draft; }
+}
+
+define behavior for ZC_BOOKING_EV alias Booking
+{
+  use update;
+  use delete;
+
+  use association _travel { with draft; }
+  use association _bookingsuppl { create; with draft; }
+}
+
+define behavior for ZC_BSUPPL_EV alias BookingSupplement
+{
+  use update;
+  use delete;
+
+  use association _travel { with draft; }
+  use association _booking { with draft; }
+}

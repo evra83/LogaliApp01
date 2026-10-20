@@ -16,5 +16,5 @@ define view entity ZC_BSUPPL_EV as projection on ZI_BSUPPL_EV
     _booking:redirected to parent ZC_BOOKING_EV,
     _product,
     _producttext,
-    _travel
+    _travel: redirected to ZC_TRAVEL_EV
 }
