@@ -143,6 +143,7 @@ annotate entity ZC_TRAVEL_EV
     Description;
     @EndUserText.label: 'Overall Status'
     @UI:{ 
+        identification: [{ position: 30 }],
         lineItem: [{ 
             position: 100,
             cssDefault.width: '10rem',

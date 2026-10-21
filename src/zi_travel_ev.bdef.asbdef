@@ -19,7 +19,10 @@ etag master LocalLastChangedAt                          //Toma el campo con la u
   LocalCreatedAt,
   LocalCreatedBy,
   LocalLastChangedAt,
-  LocalLastChangedBy;
+  LocalLastChangedBy,
+  OverallStatus,
+  OverallStatusCriticality,
+  CustomerName;
 
   draft action Resume;
   draft action Edit;
@@ -28,6 +31,7 @@ etag master LocalLastChangedAt                          //Toma el campo con la u
   draft determine action Prepare;
 
   determination setTravelnumber on save { create; }
+  determination setInitialDefault on modify { create; }
 
   association _booking { create; with draft; }                      //Asociación con la tabla de Booking para Navegación - Solo se hace en el padre
 

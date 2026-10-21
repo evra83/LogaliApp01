@@ -28,7 +28,7 @@ define root view entity ZI_TRAVEL_EV
         when 'O' then 2
 		when 'A' then 3
 		when 'X' then 1
-		else 0
+		else 5
 	  end as OverallStatusCriticality,	
       @Semantics.user.createdBy: true
       local_created_by      as LocalCreatedBy,
