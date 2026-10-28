@@ -20,18 +20,48 @@ etag master LocalLastChangedAt                          //Toma el campo con la u
   LocalCreatedBy,
   LocalLastChangedAt,
   LocalLastChangedBy,
-  OverallStatus,
-  OverallStatusCriticality,
+  //OverallStatus,
+  //OverallStatusCriticality,
   CustomerName;
+
+  field ( mandatory ) AgencyId, CustomerId, BeginDate, EndDate, CurrencyCode, BookingFee, TotalPrice;  //Campos obligatorios para crear un registro
 
   draft action Resume;
   draft action Edit;
   draft action Activate optimized;
   draft action Discard;
-  draft determine action Prepare;
 
   determination setTravelnumber on save { create; }
   determination setInitialDefault on modify { create; }
+
+  validation validateAgency on save { create; update; field AgencyId; }
+  determine action validateAgencyID { validation validateAgency; }
+
+  validation validateCostumer on save { create; update; field CustomerId; }
+  determine action validateCostumerID { validation validateCostumer; }
+
+  validation validateDates on save { create; update; field BeginDate, EndDate; }
+  determine action validateDateRange { validation validateDates; }
+
+  validation validateBookingFee on save { create; update; field BookingFee; }
+  determine action validateBookingFeeValue { validation validateBookingFee; }
+
+
+  //Validaciones de draft
+  draft determine action Prepare{
+    validation ( always ) validateAgency;
+    validation ( always ) validateCostumer;
+    validation ( always ) validateDates;
+    validation ( always ) validateBookingFee;
+  }
+
+  side effects
+  {
+    determine action validateAgencyID executed on field AgencyId affects messages;
+    determine action validateCostumerID executed on field CustomerId affects messages;
+    determine action validateDateRange executed on field BeginDate, field EndDate affects messages;
+  }
+
 
   association _booking { create; with draft; }                      //Asociación con la tabla de Booking para Navegación - Solo se hace en el padre
 
@@ -106,8 +136,8 @@ etag master LocalLastChangedAt
   Bookinguuid,
   localLastChangedAt;
 
-  association _travel {  with draft; }
-  association _booking {  with draft; }
+  association _travel { with draft; }
+  association _booking { with draft; }
 
   mapping for zbsuppl_ev
     {

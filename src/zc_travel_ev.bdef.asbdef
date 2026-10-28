@@ -1,6 +1,7 @@
 projection;
 strict ( 2 );
 use draft;
+use side effects;
 
 define behavior for ZC_TRAVEL_EV alias Travel
 {
@@ -13,6 +14,9 @@ define behavior for ZC_TRAVEL_EV alias Travel
   use action Activate;
   use action Discard;
   use action Prepare;
+
+  use action validateAgencyID;
+  use action validateCostumerID;
 
   use association _booking { create; with draft; }
 }
